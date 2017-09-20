@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tk.mybatis.springboot.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="tk.mybatis.springboot.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="tender_id" jdbcType="BIGINT" property="tenderId" />
+    <result column="tender_record_id" jdbcType="BIGINT" property="tenderRecordId" />
+    <result column="contract_id" jdbcType="BIGINT" property="contractId" />
+    <result column="buyer" jdbcType="BIGINT" property="buyer" />
+    <result column="buyer_company_id" jdbcType="BIGINT" property="buyerCompanyId" />
+    <result column="buyer_company_name" jdbcType="VARCHAR" property="buyerCompanyName" />
+    <result column="supplier" jdbcType="BIGINT" property="supplier" />
+    <result column="supplier_company_id" jdbcType="BIGINT" property="supplierCompanyId" />
+    <result column="supplier_company_name" jdbcType="VARCHAR" property="supplierCompanyName" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime" />
+    <result column="delivery_end_time" jdbcType="TIMESTAMP" property="deliveryEndTime" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="delivery_connect_name" jdbcType="VARCHAR" property="deliveryConnectName" />
+    <result column="delivery_connect_phone" jdbcType="VARCHAR" property="deliveryConnectPhone" />
+    <result column="delivery_connect_mark" jdbcType="VARCHAR" property="deliveryConnectMark" />
+    <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+    <result column="quantity" jdbcType="DECIMAL" property="quantity" />
+    <result column="buy_price" jdbcType="DECIMAL" property="buyPrice" />
+    <result column="sum_price" jdbcType="DECIMAL" property="sumPrice" />
+    <result column="order_delivery_count" jdbcType="INTEGER" property="orderDeliveryCount" />
+    <result column="total_submit_quantity" jdbcType="DECIMAL" property="totalSubmitQuantity" />
+    <result column="total_delivery_quantity" jdbcType="DECIMAL" property="totalDeliveryQuantity" />
+    <result column="finish_quantity" jdbcType="DECIMAL" property="finishQuantity" />
+    <result column="finish_price" jdbcType="DECIMAL" property="finishPrice" />
+    <result column="next_update_time" jdbcType="TIMESTAMP" property="nextUpdateTime" />
+    <result column="delay_delivery_count" jdbcType="INTEGER" property="delayDeliveryCount" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="petrol_type" jdbcType="TINYINT" property="petrolType" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="third_pay_status" jdbcType="TINYINT" property="thirdPayStatus" />
+    <result column="certificate_status" jdbcType="TINYINT" property="certificateStatus" />
+    <result column="payed_price" jdbcType="DECIMAL" property="payedPrice" />
+    <result column="pack_type" jdbcType="TINYINT" property="packType" />
+    <result column="coupon_amount" jdbcType="DECIMAL" property="couponAmount" />
+    <result column="bag_amount" jdbcType="DECIMAL" property="bagAmount" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  
+  <!-- 以下为手动添加 -->
+  <select id="findOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    * from t_order where id = #{id};
+  </select>
+</mapper>
