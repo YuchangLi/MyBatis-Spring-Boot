@@ -4,9 +4,16 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <properties resource="application.properties"/>
+  <!-- classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 -->
+    <!-- 
+  <classPathEntry
+    location="c:\Program Files\repo\mysql\mysql-connector-java\5.1.36\mysql-connector-java-5.1.36.jar" />
+    <properties resource="${basedir}/src/main/resources/application.yml"/>
+    <properties resource="application.yml"/>
+     -->
 
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8" />
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
@@ -14,11 +21,15 @@
             <property name="mappers" value="tk.mybatis.springboot.util.MyMapper"/>
         </plugin>
 
-        <jdbcConnection driverClass="${druid.driver-class}"
-                        connectionURL="${druid.url}"
-                        userId="${druid.username}"
-                        password="${druid.password}">
-        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="${spring.datasource.driverClassName}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection> -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		      connectionURL="jdbc:mysql://ilovemldu.mysql.rds.aliyuncs.com:3506/petrocoke_dev" userId="petrocoke_dev"
+		      password="petrocoke_dev123">
+		    </jdbcConnection>
 
         <javaModelGenerator targetPackage="tk.mybatis.springboot.model" targetProject="src/main/java"/>
 
@@ -27,7 +38,7 @@
         <javaClientGenerator targetPackage="tk.mybatis.springboot.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="%">
+        <table tableName="t_order" domainObjectName="Order">
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             <!--oracle 配置-->

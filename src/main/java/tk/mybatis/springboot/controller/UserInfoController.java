@@ -66,6 +66,11 @@ public class UserInfoController {
         return userInfo;
     }
 
+    @RequestMapping(value = "/get/{id}")
+    public Object get(@PathVariable Integer id) {
+      return userInfoService.get(id);
+    }
+
     @RequestMapping(value = "/delete/{id}")
     public ModelMap delete(@PathVariable Integer id) {
         ModelMap result = new ModelMap();

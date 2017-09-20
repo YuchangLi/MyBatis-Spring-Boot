@@ -25,11 +25,17 @@
 package tk.mybatis.springboot.service;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import tk.mybatis.springboot.mapper.OrderMapper;
 import tk.mybatis.springboot.mapper.UserInfoMapper;
+import tk.mybatis.springboot.model.Order;
 import tk.mybatis.springboot.model.UserInfo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +47,8 @@ public class UserInfoService {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
     public List<UserInfo> getAll(UserInfo UserInfo) {
         if (UserInfo.getPage() != null && UserInfo.getRows() != null) {
@@ -50,7 +58,26 @@ public class UserInfoService {
     }
 
     public UserInfo getById(Integer id) {
-        return userInfoMapper.selectByPrimaryKey(id);
+      System.out.println(this.orderMapper.selectByPrimaryKey(1l));
+        return null;
+//        return userInfoMapper.selectByPrimaryKey(id);
+    }
+ 
+    public Object get(Integer id) {
+//      return this.orderMapper.selectByPrimaryKey(1l);
+//      PageHelper.startPage(2, 0, "ID DESC");
+//      List<Order> list = orderMapper.selectAll();
+//      PageInfo<Order> pageInfo = new PageInfo<Order>(list);
+      Order record = new Order();
+      record.setOrderNum("121312321");
+      record.setContractId(123l);
+      record.setTenderRecordId(11l);
+      record.setBuyer(11l);
+      record.setSupplier(11l);
+      record.setCreateTime(new Date());
+      record.setVersion(1);
+      this.orderMapper.insertSelective(record);
+      return record;
     }
 
     public void deleteById(Integer id) {
